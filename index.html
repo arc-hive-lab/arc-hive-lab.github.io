@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="건축역사·설계기술 연구실 (ARC-HIVE), 아주대학교 건축학과 권용찬 — Architectural History & Design Technology Lab, Ajou University">
+<meta name="author" content="Yongchan Kwon">
+<meta property="og:title" content="ARC-HIVE — Architectural History & Design Technology Lab">
+<meta property="og:description" content="건축의 역사, 기술, 실무의 삼각대 위에서, 그 과거를 읽고 미래를 설계합니다.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2327406B'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='700' font-size='34' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<title>ARC-HIVE — Architectural History &amp; Design Technology Lab, Ajou University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
+<style>
+  :root {
+    --paper: #F2F3F0; --paper-2: #E9EBE6;
+    --ink: #1B1E21; --ink-2: #4A5058; --ink-3: #6E757C;
+    --rule: #D5D8D3; --rule-strong: #B9BEB8;
+    --accent: #27406B; --accent-ink: #FFFFFF; --accent-soft: #DDE3EE;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #15181B; --paper-2: #1C2024;
+      --ink: #E6E7E2; --ink-2: #B7BBB5; --ink-3: #8B9096;
+      --rule: #2C3136; --rule-strong: #3E444A;
+      --accent: #8FA6D6; --accent-ink: #0F1420; --accent-soft: #232C3D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #15181B; --paper-2: #1C2024;
+    --ink: #E6E7E2; --ink-2: #B7BBB5; --ink-3: #8B9096;
+    --rule: #2C3136; --rule-strong: #3E444A;
+    --accent: #8FA6D6; --accent-ink: #0F1420; --accent-soft: #232C3D;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Noto Sans KR", "Archivo", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace; }
+  .latin { font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; }
+
+  html[data-lang="ko"] .en { display: none !important; }
+  html[data-lang="en"] .ko { display: none !important; }
+  html[data-lang="en"] body { font-family: "Archivo", "Noto Sans KR", system-ui, sans-serif; }
+
+  .sheet { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
+  .titleblock {
+    position: sticky; top: 0; align-self: start; height: 100vh;
+    border-right: 1px solid var(--rule-strong); padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 24px; background: var(--paper); overflow: auto;
+  }
+  .tb-head { border-bottom: 1px solid var(--rule-strong); padding-bottom: 18px; }
+  .tb-mark { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.02em; line-height: 1; font-variation-settings: "wdth" 85; margin: 0; }
+  .tb-mark span { color: var(--accent); }
+  .tb-sub { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-2); line-height: 1.45; }
+  .tb-nav { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+  .tb-nav a { display: grid; grid-template-columns: 44px 1fr; align-items: baseline; padding: 6px 0; text-decoration: none; font-size: 13.5px; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+  .tb-nav a:hover { color: var(--ink); }
+  .tb-nav .code { font-size: 11px; letter-spacing: .06em; color: var(--ink-3); }
+  .tb-foot { margin-top: auto; font-size: 11px; color: var(--ink-3); line-height: 1.6; }
+  .tb-foot dl { margin: 0; display: grid; grid-template-columns: 56px 1fr; row-gap: 4px; column-gap: 8px; }
+  .tb-foot dt { letter-spacing: .08em; text-transform: uppercase; }
+  .tb-foot dd { margin: 0; color: var(--ink-2); }
+  .lang { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 2px; overflow: hidden; font-size: 11.5px; letter-spacing: .08em; }
+  .lang button { appearance: none; border: 0; background: transparent; color: var(--ink-2); padding: 5px 10px; cursor: pointer; font: inherit; letter-spacing: inherit; }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+  main { padding: 0 clamp(20px, 5vw, 72px) 96px; }
+  section { padding: 56px 0 44px; border-bottom: 1px solid var(--rule-strong); scroll-margin-top: 24px; }
+  section:last-of-type { border-bottom: 0; }
+  .sec-head { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: baseline; gap: 16px; margin-bottom: 28px; }
+  .sec-code { font-size: 12px; letter-spacing: .1em; color: var(--accent); }
+  h2 { margin: 0; font-family: "Archivo", "Noto Sans KR", sans-serif; font-weight: 600; font-size: clamp(22px, 2.4vw, 28px); letter-spacing: -0.015em; line-height: 1.2; text-wrap: balance; }
+  h2 .ko { font-family: "Noto Sans KR", sans-serif; font-weight: 500; }
+  h3.sub { margin: 36px 0 10px; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  h3.sub:first-of-type { margin-top: 0; }
+  h3.sub .ko { font-family: "Noto Sans KR", sans-serif; letter-spacing: .04em; font-weight: 500; }
+  .measure { max-width: 66ch; }
+  p { margin: 0 0 1em; }
+  .lede { font-size: 18px; line-height: 1.65; }
+  .muted { color: var(--ink-2); }
+  .small { font-size: 13.5px; }
+  .ko { word-break: keep-all; }
+
+  /* hero */
+  .hero { padding-top: 72px; }
+  .hero h1 { margin: 0 0 20px; font-family: "Archivo", sans-serif; font-weight: 700; font-size: clamp(34px, 5.2vw, 64px); line-height: 1.02; letter-spacing: -0.03em; font-variation-settings: "wdth" 90; text-wrap: balance; max-width: 18ch; }
+  .hero h1 .ko { font-family: "Noto Sans KR", sans-serif; font-weight: 700; letter-spacing: -0.02em; font-size: .88em; line-height: 1.18; display: block; max-width: 20ch; }
+  .hero .thesis { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.6; max-width: 40ch; margin: 0 0 32px; }
+  .keyline { height: 1px; background: var(--ink); width: 64px; margin-bottom: 28px; }
+  .tripod { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: start; }
+  .tripod svg { width: 100%; max-width: 420px; height: auto; display: block; }
+  .axes { display: grid; border-top: 1px solid var(--rule-strong); }
+  .axis { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .axis h3 { margin: 0; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); line-height: 1.6; }
+  .axis h3 small { display: block; font-family: "Noto Sans KR", sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0; text-transform: none; color: var(--ink-3); }
+  .axis p { margin: 0; font-size: 15px; }
+
+  /* faculty */
+  .bio { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; align-items: start; margin-bottom: 40px; }
+  .portrait { width: 200px; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; border: 1px solid var(--rule-strong); }
+  .cap { font-size: 11.5px; color: var(--ink-3); margin-top: 8px; line-height: 1.5; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 32px; font-size: 14px; margin-top: 18px; }
+  .facts .k { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+
+  /* timeline rows (education, career, projects, grants) */
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule-strong); }
+  .rows li { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+  .rows .d { font-size: 12.5px; color: var(--ink-3); padding-top: 3px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .rows .t { font-weight: 500; }
+  .rows .v { color: var(--ink-2); font-size: 13.5px; display: block; }
+  .rows .v a { color: var(--ink-3); }
+  .rows .role { color: var(--accent); font-size: 12px; margin-left: 8px; letter-spacing: .04em; }
+
+  /* projects (practice) */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); border-top: 1px solid var(--rule-strong); border-left: 1px solid var(--rule-strong); }
+  .pj { border-right: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; }
+  .pj .tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); display: flex; justify-content: space-between; gap: 8px; }
+  .pj h4 { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.35; text-wrap: balance; }
+  .pj .use { font-size: 13.5px; color: var(--ink-2); }
+  .pj .spec { font-size: 12px; color: var(--ink-3); line-height: 1.55; }
+  .pj .spec b { font-weight: 500; color: var(--ink-2); }
+  .pj .stat { font-size: 11px; letter-spacing: .06em; padding: 2px 7px; border: 1px solid var(--rule-strong); border-radius: 2px; color: var(--ink-2); align-self: flex-start; margin-top: 4px; }
+  .pj .stat.win { border-color: var(--accent); color: var(--accent); }
+
+  /* research cards */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border-top: 1px solid var(--rule-strong); border-left: 1px solid var(--rule-strong); }
+  .proj { border-right: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+  .proj .tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .proj h4 { margin: 0; font-size: 16.5px; font-weight: 600; line-height: 1.4; text-wrap: balance; }
+  .proj p { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .status { display: inline-block; font-size: 11px; letter-spacing: .06em; padding: 2px 7px; border: 1px solid var(--rule-strong); border-radius: 2px; color: var(--ink-2); align-self: flex-start; }
+  .status.now { border-color: var(--accent); color: var(--accent); }
+
+  .note { font-size: 12.5px; color: var(--ink-3); border-left: 2px solid var(--accent); padding-left: 10px; margin-top: 18px; }
+  .callout { border: 1px solid var(--rule-strong); padding: 24px 28px; max-width: 72ch; background: var(--paper-2); }
+  .callout h3 { margin: 0 0 10px; font-size: 16px; font-weight: 600; }
+  .callout ol { margin: 10px 0 0; padding-left: 20px; }
+  .callout li { margin-bottom: 6px; }
+  .contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; font-size: 15px; }
+  .contact .k { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); display: block; margin-bottom: 4px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips span { font-size: 12.5px; padding: 3px 9px; border: 1px solid var(--rule-strong); border-radius: 2px; color: var(--ink-2); }
+
+  @media (max-width: 900px) {
+    .sheet { grid-template-columns: 1fr; }
+    .titleblock { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--rule-strong); padding: 20px 20px 16px; gap: 16px; overflow: visible; }
+    .tb-nav, .tb-foot { display: none; }
+    .tb-head { border-bottom: 0; padding-bottom: 0; }
+    .hero { padding-top: 40px; }
+    .tripod, .bio { grid-template-columns: 1fr; }
+    .rows li { grid-template-columns: 1fr; gap: 2px; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .tb-nav a, .lang button, a { transition: color .15s ease, background-color .15s ease; } }
+</style>
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="sheet">
+  <aside class="titleblock" aria-label="Title block">
+    <div class="tb-head">
+      <p class="tb-mark">ARC<span>-</span>HIVE</p>
+      <p class="tb-sub"><span class="ko">건축역사·설계기술 연구실<br>아주대학교 건축학과</span><span class="en">Architectural History &amp; Design Technology Lab<br>Department of Architecture, Ajou University</span></p>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-ko" data-lang="ko" aria-pressed="true">KO</button>
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <ul class="tb-nav">
+      <li><a href="#lab"><span class="code mono">A-01</span><span><span class="ko">연구실</span><span class="en">Lab</span></span></a></li>
+      <li><a href="#people"><span class="code mono">A-02</span><span><span class="ko">교수</span><span class="en">Faculty</span></span></a></li>
+      <li><a href="#research"><span class="code mono">A-03</span><span><span class="ko">연구</span><span class="en">Research</span></span></a></li>
+      <li><a href="#publications"><span class="code mono">A-04</span><span><span class="ko">논문·저서</span><span class="en">Publications</span></span></a></li>
+      <li><a href="#practice"><span class="code mono">A-05</span><span><span class="ko">설계 실무</span><span class="en">Practice</span></span></a></li>
+      <li><a href="#awards"><span class="code mono">A-06</span><span><span class="ko">수상·전시</span><span class="en">Awards &amp; exhibitions</span></span></a></li>
+      <li><a href="#join"><span class="code mono">A-07</span><span><span class="ko">대학원 지원</span><span class="en">Prospective students</span></span></a></li>
+      <li><a href="#contact"><span class="code mono">A-08</span><span><span class="ko">연락</span><span class="en">Contact</span></span></a></li>
+    </ul>
+    <div class="tb-foot mono">
+      <dl>
+        <dt>Est.</dt><dd>2026</dd>
+        <dt>Room</dt><dd>산학협력원 719</dd>
+        <dt>Rev.</dt><dd>2026-09-12 · v2 draft</dd>
+      </dl>
+    </div>
+  </aside>
+
+  <main>
+    <!-- A-01 LAB -->
+    <section class="hero" id="lab">
+      <div class="sec-head"><span class="sec-code mono">A-01</span><h2><span class="ko">연구실</span><span class="en">The lab</span></h2></div>
+      <h1><span class="ko">건축의 역사, 기술, 실무의 삼각대 위에서, 그 과거를 읽고 미래를 설계합니다.</span><span class="en">Reading the past of architecture, designing its future — on the tripod of history, technology, and practice.</span></h1>
+      <div class="keyline"></div>
+      <p class="thesis"><span class="ko">ARC-HIVE는 건축역사 연구실입니다. 다만 문헌만이 아니라 HBIM과 파라메트릭 BIM 같은 디지털 기술을 분석의 방법으로 쓰고, 15년의 설계 실무를 그 신뢰성의 토대로 삼습니다. 이름은 ARCH(건축)와 ARCHIVE(기록)를 합친 것입니다.</span><span class="en">ARC-HIVE is a lab in architectural history that treats digital technology — HBIM, parametric BIM — as a method of analysis rather than a drafting tool, and fifteen years of design practice as the ground its research stands on. The name joins ARCH(itecture) and ARCHIVE.</span></p>
+      <div class="tripod">
+        <svg viewBox="0 0 420 380" role="img" aria-labelledby="tripod-title">
+          <title id="tripod-title">Three axes of the lab: history, technology, practice</title>
+          <g fill="none" stroke="var(--ink-3)" stroke-width="1">
+            <polygon points="210,40 40,320 380,320" stroke="var(--ink)" stroke-width="1.25"/>
+            <line x1="210" y1="40" x2="210" y2="226" stroke-dasharray="3 4"/>
+            <line x1="40" y1="320" x2="210" y2="226" stroke-dasharray="3 4"/>
+            <line x1="380" y1="320" x2="210" y2="226" stroke-dasharray="3 4"/>
+          </g>
+          <circle cx="210" cy="226" r="4" fill="var(--accent)"/>
+          <g fill="var(--ink)" font-family="Archivo, sans-serif" font-size="13" font-weight="600" letter-spacing="1.5">
+            <text x="210" y="24" text-anchor="middle">HISTORY</text>
+            <text x="40" y="350" text-anchor="start">TECHNOLOGY</text>
+            <text x="380" y="350" text-anchor="end">PRACTICE</text>
+          </g>
+          <g fill="var(--ink-3)" font-family="IBM Plex Mono, monospace" font-size="10.5">
+            <text x="210" y="62" text-anchor="middle">Korean modern architecture · Seokguram</text>
+            <text x="40" y="366" text-anchor="start">HBIM · parametric BIM</text>
+            <text x="380" y="366" text-anchor="end">Boston · Seoul</text>
+          </g>
+          <text x="222" y="222" font-family="Archivo, sans-serif" font-size="11" font-weight="600" fill="var(--accent)" letter-spacing="1">ARC-HIVE</text>
+        </svg>
+        <div class="axes">
+          <div class="axis"><h3>History<small class="ko">건축역사 연구</small><small class="en">Theory</small></h3><p><span class="ko">한국 주택사와 한옥, 만주국–경성–동경의 도시건축 비교, 근대건축 용어론, 석굴암의 설계 원리. 연구의 대상이 여기서 나옵니다.</span><span class="en">The history of Korean housing and the hanok; comparative urbanism of Shinkyo, Keijo and Tokyo; the vocabulary of modern architecture; the design logic of Seokguram. The lab's objects of study come from here.</span></p></div>
+          <div class="axis"><h3>Technology<small class="ko">디지털 기술 연구</small><small class="en">Method</small></h3><p><span class="ko">HBIM으로 역사 건축의 구조와 설계를 재구성하고, 파라메트릭 BIM(커튼월 nested family, Rhino.Inside.Revit)으로 설계 기술을 실험합니다. 방법이 여기서 나옵니다.</span><span class="en">Reconstructing historic structures and their design with HBIM; experimenting with parametric BIM (nested curtain-wall families, Rhino.Inside.Revit). The lab's methods come from here.</span></p></div>
+          <div class="axis"><h3>Practice<small class="ko">설계 실무 연계</small><small class="en">Ground</small></h3><p><span class="ko">보스턴과 서울에서의 고층·복합용도·시니어하우징 설계, 파사드 컨설턴트 협업, BIM 기반 설계. 연구가 현실에 닿는 지점입니다.</span><span class="en">High-rise, mixed-use and senior housing design in Boston and Seoul, façade work with consultants, BIM-based delivery. Where the research touches the ground.</span></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A-02 FACULTY -->
+    <section id="people">
+      <div class="sec-head"><span class="sec-code mono">A-02</span><h2><span class="ko">권용찬 — 조교수</span><span class="en">Yongchan Kwon — Assistant Professor</span></h2></div>
+      <div class="bio">
+        <div>
+          <img class="portrait" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAHYAWIDASIAAhEBAxEB/8QAHQABAAEFAQEBAAAAAAAAAAAAAAMCBAUGBwEICf/EAEMQAAEDAgQEBAMHAwMBBgcAAAEAAgMEEQUSITEGQVFhBxMicTKBkQgUI0JSobEVYsEz0eFyJENTgqLwFjQ3VGR0kv/EABoBAQADAQEBAAAAAAAAAAAAAAABAgMEBQb/xAAlEQEBAAICAgIDAAIDAAAAAAAAAQIRAyESMQRBEyJRYXEUMkL/2gAMAwEAAhEDEQA/APqlERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQERRz1EVNG6WaRsbG6lzjYBBIi17E/EHhbB6aSqrsapYYYzlc8uuAemi1Ot+0X4e0j8jMTnqtLk08BcB73sg6ai5hR/aM4DrHBrKivaSbAPp7X/AHW14P4jcLY44Mo8YpzKbDypDkcD0IKDZEXgIcLggg816gIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICLGcQ8TYPwphzsSxvEIKGkaQDJK6wv0HMn2XHeL/tT4Lh8r6bhrD5cTcLf9qmPlQn2B9R+gCDuqL49x/7SnGuMNliimpcOgkblyU8d3gdQ87FanTeLfGdG95p+IcSAe0tIdLmGvMX2PdR5J0+7kXwtS+L3HFJL5sfE+KOP98od/hbnw79pTiikkjZi0sNdGwG7izI93vbQqPKJ8a+ncf4mpMCidncx04bmEbnWsOpXzN4keMlfjcktJQVEgiBNpNPUQf07AfUrDcd+KdRxhTmcOdTVDz62xmwDRsFzL7y4F2XU3ulpIv6rEauqcX1EsshJvYv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" alt="권용찬 Yongchan Kwon">
+          <p class="cap mono">Kwon, Yongchan 權容贊<br>Ph.D. · AIA<br>Scopus 55894687100</p>
+        </div>
+        <div class="measure">
+          <p class="lede"><span class="ko">건축역사학자이자 미국건축사(AIA)입니다. 서울대학교에서 건축역사로 공학박사를 받고, 컬럼비아 GSAPP과 하버드 GSD를 거쳐 보스턴의 Elkus Manfredi Architects에서 8년 가까이, 서울의 해안건축에서 2년간 설계 실무를 했습니다. 2026년 3월 아주대학교 건축학과에 부임했습니다.</span><span class="en">An architectural historian (Ph.D.) and a registered architect (AIA). After a doctorate in architectural history at Seoul National University, Columbia GSAPP and a fellowship at Harvard GSD, he practiced for nearly eight years at Elkus Manfredi Architects in Boston and two years at Haeahn Architecture in Seoul. He joined Ajou University in March 2026.</span></p>
+          <p class="muted"><span class="ko">건물이 어떻게 지어지는가 — 텍토닉의 문제 — 에 관심이 있습니다. 그 관심은 두 갈래로 이어집니다. 하나는 건물을 구성 논리대로 데이터베이스화하는 BIM이고, 다른 하나는 재료가 바뀔 때 구법을 강구하는 방식입니다. 목조 구법을 돌로 옮긴 석굴암의 돔은 그 둘이 만나는 자리입니다.</span><span class="en">His interest is tectonic: how buildings are put together. It runs in two directions — BIM, which models a building according to the logic by which it is built, and the ways construction methods are reinvented when materials change. The dome of Seokguram, a timber construction logic executed in stone, is where the two meet.</span></p>
+          <div class="facts">
+            <div><span class="k mono">License</span><span class="ko">미국건축사 (AIA), 뉴욕주</span><span class="en">Registered Architect (AIA), State of New York</span></div>
+            <div><span class="k mono">Languages</span><span class="ko">한국어(모국어) · 영어 · 일본어(읽기) · 한문(읽기)</span><span class="en">Korean (native) · English · Japanese (reading) · Classical Chinese (reading)</span></div>
+            <div><span class="k mono">Software</span><span class="chips"><span>Revit (BIM)</span><span>Rhino</span><span>Grasshopper</span><span>AutoCAD</span><span>GIS</span><span>Enscape</span><span>V-Ray</span><span>3ds Max</span><span>SketchUp</span><span>Photoshop</span><span>Illustrator</span><span>InDesign</span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub"><span class="ko">학력</span><span class="en">Education</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2015.05</span><span><span class="t">Columbia University GSAPP — M.S. in Advanced Architectural Design</span><span class="v">Graduate School of Architecture, Planning &amp; Preservation, New York</span></span></li>
+        <li><span class="d mono">2013.02</span><span><span class="t"><span class="ko">서울대학교 대학원 건축학과, 공학박사 (건축역사)</span><span class="en">Seoul National University — Ph.D. in Engineering (Architectural History)</span></span><span class="v"><span class="ko">학위논문: 『대량생산과 공용화로 본 한국 근대 집합주택의 전개』</span><span class="en">Dissertation: <i>The Development of Modern Collective Housing in Korea through Mass Production and Sharing</i></span></span></span></li>
+        <li><span class="d mono">2006.02</span><span><span class="t"><span class="ko">서울대학교 대학원 건축학과, 공학석사</span><span class="en">Seoul National University — M.S. in Architecture</span></span><span class="v"><span class="ko">학위논문: 『원형과 기본형의 개념을 통해 본 1950년대 이후 한국 도시 주택의 변천에 관한 연구』</span><span class="en">Thesis: <i>The Transformation of Korean Urban Housing since the 1950s through the Concepts of Archetype and Basic Type</i></span></span></span></li>
+        <li><span class="d mono">2004.02</span><span><span class="t"><span class="ko">서울대학교 건축학과, 공학사</span><span class="en">Seoul National University — B.S. in Architecture</span></span><span class="v"><span class="ko">학사논문: 『도시 내 평면형 환승주차장의 새로운 가능성에 관한 연구』</span><span class="en">Thesis: <i>New Possibilities for Surface Park-and-Ride Facilities in the City</i></span></span></span></li>
+        <li><span class="d mono">2013.07–2014.08</span><span><span class="t">Harvard University Graduate School of Design — Visiting Fellow</span><span class="v">Advisor: Prof. Peter G. Rowe</span></span></li>
+      </ul>
+
+      <h3 class="sub"><span class="ko">경력</span><span class="en">Appointments</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2026.03–</span><span><span class="t"><span class="ko">아주대학교 건축학과 조교수</span><span class="en">Assistant Professor, Department of Architecture, Ajou University</span></span></span></li>
+        <li><span class="d mono">2024.03–2026.01</span><span><span class="t"><span class="ko">해안건축, 책임 (Senior Associate)</span><span class="en">Senior Associate, Haeahn Architecture, Seoul</span></span></span></li>
+        <li><span class="d mono">2023.09–2024.01</span><span><span class="t"><span class="ko">홍익대학교 건축도시대학 건축학부, 외래교수</span><span class="en">Adjunct Professor, School of Architecture, Hongik University</span></span></span></li>
+        <li><span class="d mono">2015.09–2023.05</span><span><span class="t">Elkus Manfredi Architects, Boston — Architectural Designer</span></span></li>
+        <li><span class="d mono">2013.03–2014.05</span><span><span class="t"><span class="ko">서울대학교 공학연구소 선임연구원 → 보조연구원</span><span class="en">Senior Researcher, then Assistant Researcher, Institute of Engineering Research, Seoul National University</span></span></span></li>
+        <li><span class="d mono">2013.03–2013.06</span><span><span class="t"><span class="ko">선문대학교 건축학과 시간강사 — 한국건축사 1, 전통건축구법</span><span class="en">Lecturer, Sun Moon University — History of Korean Architecture I, Traditional Construction Methods</span></span></span></li>
+        <li><span class="d mono">2011.08–2013.02</span><span><span class="t"><span class="ko">아주대학교 건축학과 시간강사 — 한국건축 (2학기)</span><span class="en">Lecturer, Ajou University — Korean Architecture (two semesters)</span></span></span></li>
+        <li><span class="d mono">2011.03–2013.02</span><span><span class="t"><span class="ko">서울대학교 공학연구소 연구원</span><span class="en">Researcher, Institute of Engineering Research, Seoul National University</span></span></span></li>
+        <li><span class="d mono">2006.04–2011.02</span><span><span class="t"><span class="ko">서울대학교 대학원 소속 전문연구요원</span><span class="en">Technical Research Personnel (alternative military service), Seoul National University</span></span></span></li>
+        <li><span class="d mono">2006.03–2007.02</span><span><span class="t"><span class="ko">서울대학교 건축학과 조교 (TA)</span><span class="en">Teaching Assistant, Department of Architecture, Seoul National University</span></span><span class="v"><span class="ko">2006 여름 master class·여름건축학교 조교</span><span class="en">Assistant, 2006 Summer Master Class and Summer Architecture School</span></span></span></li>
+      </ul>
+    </section>
+
+    <!-- A-03 RESEARCH -->
+    <section id="research">
+      <div class="sec-head"><span class="sec-code mono">A-03</span><h2><span class="ko">연구</span><span class="en">Research</span></h2></div>
+      <h3 class="sub"><span class="ko">진행 중·예정</span><span class="en">Current and upcoming</span></h3>
+      <div class="projects">
+        <article class="proj"><span class="tag mono">History · Urbanism</span><h4><span class="ko">만주국의 도시건축: 신징과 경성의 비교</span><span class="en">Imperial planning in Manchukuo: Shinkyo and Keijo compared</span></h4><p><span class="ko">식민지기 아시아에서 근대성이 어떻게 지어졌는지를 두 수도의 계획과 건축을 통해 읽습니다. 하버드 GSD 시절 피터 로우 교수와 시작한 연구의 연장. 아주대학교 정착연구.</span><span class="en">How modernity was built in colonial Asia, read through the planning and architecture of two capitals — continuing work begun with Peter Rowe at Harvard GSD. Ajou University faculty research grant.</span></p><span class="status now">2026 · <span class="ko">진행 중</span><span class="en">in progress</span></span></article>
+        <article class="proj"><span class="tag mono">History × Technology</span><h4><span class="ko">석굴암 HBIM: 8세기 석조 돔의 설계 논리</span><span class="en">Seokguram HBIM: the design logic of an 8th-century stone dome</span></h4><p><span class="ko">Buildings(2025) 논문의 후속. 디지털 모델링으로 석굴암의 기획설계를 재구성하고 구조·재료역학 전문가와 협업합니다.</span><span class="en">Follow-on to the Buildings (2025) paper: reconstructing Seokguram's schematic design digitally, with structural and materials specialists.</span></p><span class="status now"><span class="ko">진행 중</span><span class="en">in progress</span></span></article>
+        <article class="proj"><span class="tag mono">Technology · Fabrication</span><h4><span class="ko">전통 목구조 결구의 로봇 제작</span><span class="en">Robotic fabrication of traditional timber joinery</span></h4><p><span class="ko">역사적 구법의 분석을 디지털 패브리케이션으로 잇는 신규 과제. 2026년 말 제안 예정.</span><span class="en">A new project connecting the analysis of historic construction systems with digital fabrication. Proposal planned for late 2026.</span></p><span class="status"><span class="ko">준비 중</span><span class="en">in preparation</span></span></article>
+        <article class="proj"><span class="tag mono">Technology · Practice</span><h4><span class="ko">파라메트릭 BIM 설계기술</span><span class="en">Parametric BIM as design technology</span></h4><p><span class="ko">커튼월 패널 객체 안에 3차원 기하를 내재시키고 외부 파라미터로 제어하는 기법 등, 실무에서 검증된 설계 자동화를 연구로 정리합니다.</span><span class="en">Turning practice-tested design automation — geometry embedded in curtain-wall panel objects and driven by external parameters, Rhino.Inside.Revit workflows — into research.</span></p><span class="status"><span class="ko">계속</span><span class="en">ongoing</span></span></article>
+      </div>
+      <p class="note mono">AAS 2027 (Boston) — panel confirmed.</p>
+
+      <h3 class="sub"><span class="ko">참여 연구과제</span><span class="en">Funded research participation</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2013.08–2014.06</span><span><span class="t"><span class="ko">파라메트릭 형상기반 한옥조립키트 개발 연구</span><span class="en">Parametric geometry-based hanok assembly kit</span></span><span class="v"><span class="ko">한국연구재단 · 연구보조</span><span class="en">National Research Foundation of Korea · research assistant</span></span></span></li>
+        <li><span class="d mono">2010.04–2010.12</span><span><span class="t"><span class="ko">전통건축부재보존센터 건립 타당성 조사 및 기본계획</span><span class="en">Feasibility study and master plan for a Traditional Building Component Conservation Center</span></span><span class="v"><span class="ko">문화재청 · 연구실무책임</span><span class="en">Cultural Heritage Administration · project lead</span></span></span></li>
+        <li><span class="d mono">2009.12–2012.08</span><span><span class="t"><span class="ko">한옥건축 통합정보시스템 구축 및 한옥부재 3차원 라이브러리 구축</span><span class="en">Integrated information system and 3D component library for hanok architecture</span></span><span class="v"><span class="ko">건설교통기술평가원 · 연구보조</span><span class="en">KICTEP · research assistant</span></span></span></li>
+        <li><span class="d mono">2008.11–2011.10</span><span><span class="t"><span class="ko">건축문화유산의 '전통'의 탄생</span><span class="en">The birth of "tradition" in architectural heritage</span></span><span class="v"><span class="ko">한국학술진흥재단 · 연구보조</span><span class="en">Korea Research Foundation · research assistant</span></span></span></li>
+        <li><span class="d mono">2008.11–2009.10</span><span><span class="t"><span class="ko">한옥 건축 기술기준 등에 관한 연구</span><span class="en">Technical standards for hanok construction</span></span><span class="v"><span class="ko">국토해양부 · 연구보조</span><span class="en">Ministry of Land, Transport and Maritime Affairs · research assistant</span></span></span></li>
+        <li><span class="d mono">2008.07–2011.06</span><span><span class="t"><span class="ko">한국주택의 공간형식에 관한 통시적 연구</span><span class="en">A diachronic study of spatial form in Korean housing</span></span><span class="v"><span class="ko">서울대 규장각한국학연구원 · 연구실무책임</span><span class="en">Kyujanggak Institute for Korean Studies, SNU · project lead</span></span></span></li>
+        <li><span class="d mono">2007.04–2011.11</span><span><span class="t"><span class="ko">전통목조주택기법의 디지털라이브러리 구축</span><span class="en">Digital library of traditional timber housing techniques</span></span><span class="v"><span class="ko">한국과학재단 · 연구보조</span><span class="en">Korea Science and Engineering Foundation · research assistant</span></span></span></li>
+        <li><span class="d mono">2006.08–2007.07</span><span><span class="t"><span class="ko">비지정 건조물문화재 일제조사사업</span><span class="en">Survey of undesignated built heritage</span></span><span class="v"><span class="ko">문화재청 · 연구실무책임</span><span class="en">Cultural Heritage Administration · project lead</span></span></span></li>
+        <li><span class="d mono">2006.03–2008.07</span><span><span class="t"><span class="ko">한옥 미래자산 포트폴리오</span><span class="en">Hanok as future asset: a portfolio</span></span><span class="v"><span class="ko">서울특별시 시정개발연구원 · 연구실무책임</span><span class="en">Seoul Development Institute · project lead</span></span></span></li>
+        <li><span class="d mono">2006.11–2006.12</span><span><span class="t"><span class="ko">전통가옥 편의시설 설치현황 조사연구</span><span class="en">Survey of amenity installations in traditional houses</span></span><span class="v"><span class="ko">국립문화재연구소 · 연구보조</span><span class="en">National Research Institute of Cultural Heritage · research assistant</span></span></span></li>
+        <li><span class="d mono">2004.09–2007.08</span><span><span class="t"><span class="ko">베트남 하노이 프엉 조직의 지속과 변용</span><span class="en">Continuity and transformation of the phường in Hanoi, Vietnam</span></span><span class="v"><span class="ko">한국학술진흥재단 · 연구보조</span><span class="en">Korea Research Foundation · research assistant</span></span></span></li>
+      </ul>
+    </section>
+
+    <!-- A-04 PUBLICATIONS -->
+    <section id="publications">
+      <div class="sec-head"><span class="sec-code mono">A-04</span><h2><span class="ko">논문과 저서</span><span class="en">Publications</span></h2></div>
+
+      <h3 class="sub"><span class="ko">학술지 논문</span><span class="en">Journal articles</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2025.12</span><span><span class="t">Deconstructing Seokguram Grotto: Revisiting the Schematic Design</span><span class="v"><i>Buildings</i> (MDPI) · SCIE</span></span></li>
+        <li><span class="d mono">2016.03</span><span><span class="t">The minimum dwelling approach by the Housing, Urban and Regional Planning Institute (HURPI) of South Korea in the 1960s<span class="role mono">corresponding</span></span><span class="v">Sanghoon Jung, Yongchan Kwon &amp; Peter G. Rowe · <i>The Journal of Architecture</i> 21(2), 181–209 · A&amp;HCI</span></span></li>
+        <li><span class="d mono">2014.01</span><span><span class="t">Unraveling the factors determining the redevelopment of Seoul's historic hanoks<span class="role mono">first author</span></span><span class="v">Yongchan Kwon, Saehoon Kim, Bonghee Jeon · <i>Habitat International</i> 41 · SSCI</span></span></li>
+        <li><span class="d mono">2012.11</span><span><span class="t">1960년대와 1970년대 초반의 공영 공동주택에 보이는 공유주택화 경향<span class="role mono">first author</span></span><span class="v">권용찬·전봉희 · 대한건축학회 논문집 계획계 28(11) · KCI</span></span></li>
+        <li><span class="d mono">2012.10</span><span><span class="t">서구 모더니즘 건축의 효율성 제고 논의가 1910년 이후 1970년대 초까지의 한국 관영주택에서 보이는 양상<span class="role mono">first author</span></span><span class="v">권용찬·전봉희 · 대한건축학회 논문집 계획계 28(10) · KCI</span></span></li>
+        <li><span class="d mono">2011.12</span><span><span class="t">근린주구론이 일제강점기 서울의 주거지 계획에 영향을 준 시점<span class="role mono">first author</span></span><span class="v">권용찬·전봉희 · 대한건축학회 논문집 계획계 27(12) · KCI</span></span></li>
+        <li><span class="d mono">2009.12</span><span><span class="t">1950年代 서울지역 '簡易韓屋'의 조사연구</span><span class="v">김대일·권용찬·전봉희 · 대한건축학회 논문집 계획계 25(12) · KCI</span></span></li>
+        <li><span class="d mono">2008.04</span><span><span class="t">원형적 공간 요소로 본 한국주택 평면형식의 통시적 고찰</span><span class="v">전봉희·권용찬 · 대한건축학회 논문집 계획계 24(7) · KCI</span></span></li>
+      </ul>
+
+      <h3 class="sub"><span class="ko">저서·역서</span><span class="en">Books and translations</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2012.09</span><span><span class="t"><span class="ko">『한옥과 한국 주택의 역사』</span><span class="en"><i>Hanok and the History of Korean Housing</i> (in Korean)</span></span><span class="v"><span class="ko">전봉희·권용찬 공저, 동녘 — 2013 문화체육관광부 우수학술도서</span><span class="en">Bong-Hee Jeon and Yongchan Kwon, Dongnyok — Ministry of Culture, Sports and Tourism Outstanding Academic Book, 2013</span></span></span></li>
+        <li><span class="d mono">2019.12</span><span><span class="t"><span class="ko">「국민주택」「민영주택」, 『한국의식주생활사전: 주생활』</span><span class="en">"National Housing" and "Private Housing" entries, <i>Encyclopedia of Korean Culture of Basic Necessities: Housing</i></span></span><span class="v"><span class="ko">국립민속박물관 · 공저</span><span class="en">National Folk Museum of Korea · contributor</span></span></span></li>
+        <li><span class="d mono">2008.04</span><span><span class="t"><span class="ko">「역사적 정원 (플로렌스 헌장 1981)」 번역</span><span class="en">Translation: "Historic Gardens (The Florence Charter 1981)", ICOMOS</span></span><span class="v"><span class="ko">권용찬 역 · 『건축역사연구』 17(2)</span><span class="en">Yongchan Kwon, trans. · <i>Journal of Architectural History</i> 17(2)</span></span></span></li>
+      </ul>
+
+      <h3 class="sub"><span class="ko">국제학회 발표</span><span class="en">International conference papers</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2010.11</span><span><span class="t">A Study on the Effect of Neighborhood Unit to the Land Adjustment in Seoul</span><span class="v">YongChan Kwon &amp; BongHee Jeon · 8th International Conference on East Asian Architectural Culture (ISAIA), Kitakyushu, Japan</span></span></li>
+        <li><span class="d mono">2009.04</span><span><span class="t">A Comparative Study on the Public Apartment Houses with Shared Toilet and/or Kitchen in the East Asian Countries in the 20th Century</span><span class="v">YongChan Kwon &amp; BongHee Jeon · <i>Whose East Asia?</i>, International Conference on East Asian Architectural Culture, Tainan, Taiwan</span></span></li>
+        <li><span class="d mono">2008.10</span><span><span class="t">Split Spirit of Place, Yanghwajin</span><span class="v">YongChan Kwon &amp; BongHee Jeon · 16th General Assembly and Scientific Symposium of ICOMOS, Quebec, Canada</span></span></li>
+        <li><span class="d mono">2006.10</span><span><span class="t">Three Archetypal Elements of the Korean House</span><span class="v">BongHee Jeon &amp; YongChan Kwon · 6th International Symposium on Architectural Interchanges in Asia, Daegu, Korea</span></span></li>
+      </ul>
+
+      <h3 class="sub"><span class="ko">국내학회 발표</span><span class="en">Domestic conference papers</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2009.05</span><span><span class="t">한옥보존지역 경계설정을 위한 GIS 기법의 적용 사례</span><span class="v">권용찬·김하나·전봉희 · 한국건축역사학회 춘계학술발표대회</span></span></li>
+        <li><span class="d mono">2006.04</span><span><span class="t">원형과 기본형의 개념을 통해 본 1950년대 이후 한국 도시 주택의 변천에 관한 연구</span><span class="v">권용찬·전봉희 · 대한건축학회 춘계 우수졸업논문전 (석사부문 장려상)</span></span></li>
+        <li><span class="d mono">2005.10</span><span><span class="t">한국 주택의 원형과 근대 이후 도시 주택의 기본형에 대한 연구</span><span class="v">권용찬·전봉희 · 대한건축학회 학술발표대회 논문집 25(1)</span></span></li>
+      </ul>
+
+      <h3 class="sub"><span class="ko">기타 저작</span><span class="en">Other writings</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2018.03</span><span><span class="t"><span class="ko">건축 역사를 폭넓게 활용하는 건축가들 — 2017 시카고 건축 비엔날레 단상과 시사점</span><span class="en">Architects who draw widely on architectural history — notes on the 2017 Chicago Architecture Biennial</span></span><span class="v"><span class="ko">『건축과 도시공간』 29 (2018 봄), 건축도시공간연구소</span><span class="en"><i>Architecture &amp; Urban Space</i> 29, Architecture &amp; Urban Research Institute</span></span></span></li>
+        <li><span class="d mono">2007.11</span><span><span class="t"><span class="ko">「가회동 L 자택」</span><span class="en">"House L, Gahoe-dong"</span></span><span class="v"><span class="ko">제1회 한국내셔널트러스트 한옥전 『우리집은 한옥이다』 도록</span><span class="en">Catalogue, 1st Korean National Trust Hanok Exhibition <i>My House Is a Hanok</i></span></span></span></li>
+      </ul>
+    </section>
+
+    <!-- A-05 PRACTICE -->
+    <section id="practice">
+      <div class="sec-head"><span class="sec-code mono">A-05</span><h2><span class="ko">설계 실무</span><span class="en">Practice</span></h2></div>
+      <p class="measure muted" style="margin-bottom:28px"><span class="ko">연구실의 BIM 관점은 실무에서 왔습니다. 보스턴 Elkus Manfredi Architects(2015–2023)와 서울 해안건축(2024–2026)에서 담당한 프로젝트입니다.</span><span class="en">The lab's view of BIM comes from practice — projects at Elkus Manfredi Architects, Boston (2015–2023) and Haeahn Architecture, Seoul (2024–2026).</span></p>
+
+      <h3 class="sub"><span class="ko">준공·시공</span><span class="en">Built and under construction</span></h3>
+      <div class="proj-grid">
+        <article class="pj"><span class="tag mono"><span>Elkus Manfredi · 2019.09–2020.12</span><span>CD</span></span><h4>Lyrik Back Bay — 1001 Boylston Street (Parcel 12)</h4><span class="use">Boston, MA · <span class="ko">복합시설(리테일·오피스·생명과학·호텔·주차), 매사추세츠 턴파이크 위 공중권 개발</span><span class="en">Mixed-use air-rights overbuild across the Massachusetts Turnpike: retail, office, life science, hotel, parking</span></span><span class="spec"><b>Client</b> Samuels &amp; Associates · <b>Office + Life science</b> 460,400 sf, 20 stories, 298 ft · <b>Hotel</b> 152,000 sf, 13 stories · <b>Retail podium</b> 43,000 sf · <b>Parking</b> 45,000 sf, 2 levels below grade · FAR 7.3</span><span class="stat"><span class="ko">준공</span><span class="en">completed</span> · Fast Company Innovation by Design 2025 · ENR New England Best Projects 2025</span></article>
+        <article class="pj"><span class="tag mono"><span>Elkus Manfredi · 2020.12–2022.03</span><span>DD–CD</span></span><h4>200 Main Street at MIT, Kendall Square</h4><span class="use">Cambridge, MA · <span class="ko">생명과학 연구소</span><span class="en">Life science building</span></span><span class="spec"><b>Client</b> MITIMCo · 302,300 sf, 13 stories, 200 ft · FAR 4.17</span><span class="stat"><span class="ko">시공</span><span class="en">under construction</span></span></article>
+        <article class="pj"><span class="tag mono"><span>Elkus Manfredi · 2021.06–2022.01</span><span>CD–CA</span></span><h4>74 Middlesex Avenue</h4><span class="use">Somerville, MA · <span class="ko">생명과학 연구소</span><span class="en">Life science building</span></span><span class="spec"><b>Client</b> Greystar · 465,000 sf, 15 stories, 235 ft · FAR 12.1</span><span class="stat"><span class="ko">시공</span><span class="en">under construction</span></span></article>
+        <article class="pj"><span class="tag mono"><span>Elkus Manfredi · 2019.03–2019.08</span><span>DD–CD</span></span><h4>Waterstone on High Ridge</h4><span class="use">Stamford, CT · <span class="ko">노인 주거시설 (치매 환자 포함)</span><span class="en">Assisted living, including memory care</span></span><span class="spec"><b>Client</b> EPOCH Senior Living · 224,000 sf, 146 units, 4 stories</span><span class="stat"><span class="ko">준공</span><span class="en">completed</span> · MFE Awards 2023 · Senior Housing News Awards 2022</span></article>
+      </div>
+
+      <h3 class="sub"><span class="ko">계획·당선</span><span class="en">Competitions and design phases</span></h3>
+      <div class="proj-grid">
+        <article class="pj"><span class="tag mono"><span>Haeahn · 2024.09–2025.09</span><span>CD–SD</span></span><h4><span class="ko">한화 갤러리아 압구정 백화점 재건축</span><span class="en">Hanwha Galleria Apgujeong — department store rebuild</span></h4><span class="use"><span class="ko">Heatherwick Studio 공동 · 제2회 서울시 도시건축디자인혁신사업 당선</span><span class="en">With Heatherwick Studio · Selected, 2nd Seoul Urban Architecture Design Innovation Program</span></span><span class="spec"><span class="ko">대지 10,205 m² · 용적률 산정 연면적 60,827 m² · 용적률 333.95% · 건폐율 56.03% · 판매시설</span><span class="en">Site 10,205 m² · GFA (FAR basis) 60,827 m² · FAR 333.95% · coverage 56.03% · retail</span></span><span class="stat win"><span class="ko">당선</span><span class="en">winning entry</span></span></article>
+        <article class="pj"><span class="tag mono"><span>Haeahn · 2024.06–2024.08</span><span>CD–SD</span></span><h4><span class="ko">강북구 신청사 건립 국제설계공모</span><span class="en">Gangbuk-gu Government Complex — international competition</span></h4><span class="use"><span class="ko">서울 강북구 · 구청사·보건소·구민청·구의회·동주민센터·어린이집·근린생활시설</span><span class="en">Seoul · district office, public health center, civic hall, council, community center, childcare, neighborhood retail</span></span><span class="spec"><span class="ko">연면적 66,834 m² · 용적률 571.11%</span><span class="en">GFA 66,834 m² · FAR 571.11%</span></span><span class="stat win"><span class="ko">당선</span><span class="en">winning entry</span></span></article>
+        <article class="pj"><span class="tag mono"><span>Haeahn</span><span></span></span><h4><span class="ko">세운 6-1-4 지구</span><span class="en">Sewoon 6-1-4 District</span></h4><span class="use">Seoul</span><span class="stat win"><span class="ko">당선</span><span class="en">winning entry</span></span></article>
+        <article class="pj"><span class="tag mono"><span>Elkus Manfredi · 2023.03–2023.05</span><span>CD</span></span><h4>Encore Boston Harbor — East of Broadway</h4><span class="use">Everett, MA · <span class="ko">극장·프리펑션·F&amp;B·주차장, 브리지 디자인</span><span class="en">Theater, pre-function, F&amp;B, garage; bridge design</span></span><span class="spec">312,293 sf · Theater 24,455 sf · Garage 247,126 sf</span><span class="stat"><span class="ko">실시설계 중 퇴사</span><span class="en">left during CD</span></span></article>
+        <article class="pj"><span class="tag mono"><span>Elkus Manfredi · 2022.03–2023.02</span><span>SD–DD</span></span><h4>515 Fern Street</h4><span class="use">West Palm Beach, FL · <span class="ko">오피스</span><span class="en">Office tower</span></span><span class="spec"><b>Client</b> Related · 464,450 sf, 25 stories, 356 ft · FAR 6.08</span><span class="stat"><span class="ko">DD 완료 후 보류</span><span class="en">DD complete, on hold</span></span></article>
+        <article class="pj"><span class="tag mono"><span>Elkus Manfredi · 2018.04–2019.03</span><span>CD–SD</span></span><h4>Bajalta (The Landmark), Tijuana</h4><span class="use">Tijuana, Mexico · <span class="ko">리테일·오피스·주거·호텔 복합</span><span class="en">Retail, office, residential, hotel</span></span><span class="spec"><b>Client</b> Thor Urbana Capital, GFA Grupo Inmobiliario · 252,553 m² total · Retail 64,387 m² · Office 16,835 m² · Residential 45,400 m² (3 towers) · Hotel 19,550 m²</span><span class="stat"><span class="ko">현지 건축가 이관, 시공 중</span><span class="en">handed to local architect, under construction</span></span></article>
+        <article class="pj"><span class="tag mono"><span>Elkus Manfredi · 2015.09–2016.08</span><span>CD–SD</span></span><h4>2 Charlesgate West</h4><span class="use">Boston, MA · <span class="ko">공동주택 · 설계경기 당선</span><span class="en">Residential tower · competition winner</span></span><span class="spec"><b>Client</b> Trans National Properties · 399,490 sf, 29 stories, 340 ft, 245 units · FAR 15.27</span><span class="stat win"><span class="ko">당선 · 건축주 사정으로 중단</span><span class="en">winning entry · halted by owner</span></span></article>
+      </div>
+      <p class="note mono">CD = Concept Design · SD = Schematic Design · DD = Design Development · CD = Construction Documents · CA = Construction Administration</p>
+    </section>
+
+    <!-- A-06 AWARDS -->
+    <section id="awards">
+      <div class="sec-head"><span class="sec-code mono">A-06</span><h2><span class="ko">수상과 전시</span><span class="en">Awards and exhibitions</span></h2></div>
+      <h3 class="sub"><span class="ko">수상</span><span class="en">Awards</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2025.09</span><span><span class="t">Fast Company — Innovation by Design 2025, Best Urban Design Projects</span><span class="v">Lyrik Back Bay (Parcel 12, 1001 Boylston Street) — Elkus Manfredi Architects</span></span></li>
+        <li><span class="d mono">2025.08</span><span><span class="t">ENR New England — Best Projects 2025</span><span class="v">Parcel 12 (Lyrik Back Bay) — Elkus Manfredi Architects</span></span></li>
+        <li><span class="d mono">2023.09</span><span><span class="t">MFE Awards, Multifamily Executive Magazine</span><span class="v">Waterstone on High Ridge — Elkus Manfredi Architects</span></span></li>
+        <li><span class="d mono">2022.12</span><span><span class="t">Architecture and Design Awards, Senior Housing News</span><span class="v">Waterstone on High Ridge — Elkus Manfredi Architects</span></span></li>
+        <li><span class="d mono">2013.06</span><span><span class="t"><span class="ko">문화체육관광부 우수학술도서</span><span class="en">Outstanding Academic Book, Ministry of Culture, Sports and Tourism</span></span><span class="v"><span class="ko">『한옥과 한국 주택의 역사』 (전봉희·권용찬, 동녘, 2012)</span><span class="en"><i>Hanok and the History of Korean Housing</i> (Jeon &amp; Kwon, Dongnyok, 2012)</span></span></span></li>
+        <li><span class="d mono">2007.02</span><span><span class="t"><span class="ko">서울대학교 건축학과 소우 윤장섭 명예교수 장학금</span><span class="en">Sou Yoon Jang-seop Scholarship, Department of Architecture, SNU</span></span></span></li>
+        <li><span class="d mono">2006.04</span><span><span class="t"><span class="ko">대한건축학회 춘계 우수졸업논문전 석사부문 장려상</span><span class="en">Encouragement Award (Master's), Outstanding Graduation Thesis Exhibition, Architectural Institute of Korea</span></span></span></li>
+        <li><span class="d mono">2006–2007</span><span><span class="t"><span class="ko">서울대학교 GSI(Graduate Student Instructor) 장학금</span><span class="en">Graduate Student Instructor Scholarship, SNU</span></span></span></li>
+      </ul>
+      <h3 class="sub"><span class="ko">전시·창작</span><span class="en">Exhibitions and creative work</span></h3>
+      <ul class="rows">
+        <li><span class="d mono">2024.09</span><span><span class="t">Green Junction: Seoul Urban Connector</span><span class="v"><span class="ko">윤효선·권용찬 · 서울역 공간구상 시민 아이디어 공모</span><span class="en">with Hyosun Yoon · Seoul Station Area Citizens' Idea Competition</span></span></span></li>
+        <li><span class="d mono">2009.06</span><span><span class="t"><span class="ko">전통 한옥 짓기 실습</span><span class="en">Traditional hanok construction workshop</span></span><span class="v"><span class="ko">서울대학교 건축학과 · 기획보조</span><span class="en">Department of Architecture, SNU · planning assistant</span></span></span></li>
+        <li><span class="d mono">2008.06</span><span><span class="t"><span class="ko">서울한옥미래자산展</span><span class="en"><i>Seoul Hanok as Future Asset</i> exhibition</span></span><span class="v"><span class="ko">서울특별시 시정개발연구원 · 전시기획보조</span><span class="en">Seoul Development Institute · curatorial assistant</span></span></span></li>
+        <li><span class="d mono">2007.11</span><span><span class="t"><span class="ko">제1회 한국내셔널트러스트 한옥전</span><span class="en">1st Korean National Trust Hanok Exhibition</span></span><span class="v"><span class="ko">한국내셔널트러스트 · 전시기획보조</span><span class="en">Korean National Trust · curatorial assistant</span></span></span></li>
+      </ul>
+    </section>
+
+    <!-- A-07 PROSPECTIVE -->
+    <section id="join">
+      <div class="sec-head"><span class="sec-code mono">A-07</span><h2><span class="ko">대학원 지원을 생각하신다면</span><span class="en">Prospective students</span></h2></div>
+      <div class="callout">
+        <h3><span class="ko">연구실이 찾는 사람</span><span class="en">Who the lab is for</span></h3>
+        <p class="small"><span class="ko">역사 건축을 디지털로 다루고 싶은 사람, 또는 설계 실무의 BIM 경험을 연구로 옮기고 싶은 사람. 모델링·문서화·논증에서 실무 수준의 엄밀함을 기대합니다. 석사 주제는 역사 건축의 디지털 분석, 주거·도시 변화, 디지털 패브리케이션 세 방향에서 정합니다.</span><span class="en">People who want to work on historic architecture with digital tools, or who want to turn BIM experience from practice into research. The lab expects practice-level rigor in how you model, document and argue. Master's topics fall in three directions: digital analysis of historic buildings, housing and urban change, and digital fabrication.</span></p>
+        <h3 style="margin-top:18px"><span class="ko">연락하실 때</span><span class="en">When you write</span></h3>
+        <ol class="small">
+          <li><span class="ko">연구실의 논문 한 편(석굴암, <i>Buildings</i> 2025 권장)을 읽고 오세요.</span><span class="en">Read one paper from the lab first — the Seokguram article in <i>Buildings</i> (2025) is the one to start with.</span></li>
+          <li><span class="ko">1–2쪽의 research statement: 당신의 경험이 이런 연구에 어떻게 기여할지, 어떤 주제를 하고 싶은지.</span><span class="en">Send a one- to two-page research statement: how your background contributes to research of this kind, and what topic you have in mind.</span></li>
+          <li><span class="ko">성적표·포트폴리오·CV, 그리고 영어(또는 한국어) 공인성적 현황.</span><span class="en">Transcript, portfolio, CV, and your standing on English (or Korean) proficiency tests.</span></li>
+        </ol>
+        <p class="small muted" style="margin:14px 0 0"><span class="ko">외국인 지원자: GKS(정부초청장학) 대학 트랙으로 지원할 수 있습니다. GKS는 학위과정 전 1년의 한국어 연수를 포함합니다(TOPIK 5급 이상 면제).</span><span class="en">International applicants: the university track of the Global Korea Scholarship (GKS) is open. GKS includes a one-year Korean language program before the degree (waived with TOPIK 5+).</span></p>
+      </div>
+    </section>
+
+    <!-- A-08 CONTACT -->
+    <section id="contact">
+      <div class="sec-head"><span class="sec-code mono">A-08</span><h2><span class="ko">연락</span><span class="en">Contact</span></h2></div>
+      <div class="contact">
+        <div><span class="k mono">Email</span><a href="mailto:kwonyc@ajou.ac.kr">kwonyc@ajou.ac.kr</a></div>
+        <div><span class="k mono">Office</span><span class="ko">아주대학교 산학협력원 719호<br>경기도 수원시 영통구 월드컵로 206</span><span class="en">Room 719, Industry-Academic Cooperation Bldg.<br>Ajou University, 206 World cup-ro, Suwon</span></div>
+        <div><span class="k mono">Profiles</span><a href="https://www.linkedin.com/in/yongchan-kwon-22827b50/">LinkedIn</a><br><a href="https://www.ajou.ac.kr/arch/people/faculty01.do"><span class="ko">학과 교수진 페이지</span><span class="en">Department faculty page</span></a><br><a href="https://www.scopus.com/authid/detail.uri?authorId=55894687100">Scopus</a></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement, saved = null;
+  try { saved = localStorage.getItem('archive-lang'); } catch (e) {}
+  var lang = (saved === 'en' || saved === 'ko') ? saved : 'ko';
+  function apply(l) {
+    root.setAttribute('data-lang', l); root.setAttribute('lang', l);
+    document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === l ? 'true' : 'false'); });
+    try { localStorage.setItem('archive-lang', l); } catch (e) {}
+  }
+  apply(lang);
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { apply(b.getAttribute('data-lang')); }); });
+})();
+</script>
+</body>
+</html>
